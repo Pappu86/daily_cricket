@@ -43,29 +43,17 @@ ul.live-container li:hover {
     flex-wrap: wrap;
     align-self: center;
     padding: 15px;
-    flex-basis: 20%;
+    flex-basis: 25%;
 }
 
 ul.live-container li > .live-item:nth-child(2) {
-    flex-basis: 18%;
+    flex-basis: 65%;
     justify-content: space-between;
     /* background-color: yellowgreen; */
 }
 
-ul.live-container li > .live-item:nth-child(3) {
-    flex-basis: 11%;
-    justify-content: space-between;
-    /* background-color: green; */
-}
-
-ul.live-container li > .live-item:nth-child(4) {
-    flex-basis: 42%;
-    justify-content: space-around;
-    /* background-color: yellow; */
-}
-
 ul.live-container li > .live-item:last-child {
-    flex-basis: 9%;
+    flex-basis: 10%;
     justify-content: flex-end;
     /* background-color: pink; */
 }
@@ -101,6 +89,21 @@ ul.live-container li:last-child {
 
 .match {
     margin-top: 18px;
+    margin-left: 10px;
+}
+
+.team-details {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.team-details span {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-self: center;
+    flex-basis: 25%;
 }
 
 .country-logo {
@@ -115,4 +118,10 @@ ul.live-container li:last-child {
 .country-name,
 .vs {
     font-weight: 700;
+    font-size: 2rem;
+    margin-top: 7px;
+}
+
+.venu-name {
+    padding: 0 20px;
 }
