@@ -5403,6 +5403,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -5437,11 +5439,169 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      accessToken: "",
+      limit: 10,
+      startDate: prepareDateFormat(),
+      endDate: "2025-01-1",
+      status: 1,
+      isValidAPIToken: false
+    };
+  },
   mounted: function mounted() {
-    console.log("Component mounted.");
+    console.log("Live Component mounted.");
+    var instance = this;
+    instance.$nextTick(function () {
+      getAllMatches(instance); // setInterval(() => {
+      //     getMatches(instance);
+      // }, 10000);
+    });
   }
 });
+/**
+ * Prepare date formate YYYY-MM-DD
+ *
+ * @param string
+ * @return date string
+ */
+
+var prepareDateFormat = function prepareDateFormat() {
+  var dateStr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+  var d = dateStr ? dateStr : new Date(),
+      isoDateStr = !!d && d.toISOString(),
+      dateWithoutTimezone = !!isoDateStr && isoDateStr.split("T")[0];
+  console.log("dateWithoutTimezone: ", dateWithoutTimezone);
+  return dateWithoutTimezone;
+};
+/**
+ * Get all match info
+ *
+ * @param vue instance
+ * @return All matches info
+ */
+
+
+var getAllMatches = function getAllMatches(instance) {
+  var accessToken = "9e272eadc7907624ee8bb8d4b0eca1f5";
+  var filters = "&date=".concat(instance.endDate, "_").concat(instance.startDate, "&paged=1&per_page=").concat(instance.limit),
+      apiUrl = "https://rest.entitysport.com/v2/matches?status=".concat(instance.status).concat(filters, "&token=").concat(accessToken);
+  console.log("upcomingUrl", apiUrl);
+  var response = fetch("https://rest.entitysport.com/v2/matches", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+      "Access-Control-Allow-Origin": "*"
+    },
+    body: JSON.stringify({
+      status: "1",
+      token: accessToken
+    })
+  });
+  console.log("response: ", response);
+};
 
 /***/ }),
 
@@ -28163,15 +28323,177 @@ var staticRenderFns = [
             [
               _c("ul", { staticClass: "live-container" }, [
                 _c("li", [
-                  _c("div", { staticClass: "live-item" }, [_vm._v("A")]),
+                  _c("div", { staticClass: "live-item" }, [
+                    _c("div", { staticClass: "match-circle" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "match-status" }, [
+                      _vm._v("Upcoming"),
+                    ]),
+                    _vm._v(" "),
+                    _c("small", { staticClass: "match" }, [
+                      _vm._v("1st Quater final"),
+                    ]),
+                  ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "live-item" }, [_vm._v("B")]),
+                  _c("div", { staticClass: "live-item" }, [
+                    _vm._v(
+                      "\n                            C.K Pithawala Cricket Ground, Bhimpore, Surat 29\n                            Apr, 22 Local Time\n                        "
+                    ),
+                  ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "live-item" }, [_vm._v("C")]),
+                  _c("div", { staticClass: "live-item" }, [
+                    _c("span", { staticClass: "country-logo" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "https://images.entitysport.com/assets/uploads/2020/12/Guernsey.png",
+                          itemprop: "image",
+                        },
+                      }),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "country-logo" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "https://images.entitysport.com/assets/uploads/2020/12/Guernsey.png",
+                          itemprop: "image",
+                        },
+                      }),
+                    ]),
+                  ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "live-item" }, [_vm._v("D")]),
+                  _c("div", { staticClass: "live-item" }, [
+                    _c("span", { staticClass: "country-name" }, [
+                      _vm._v(
+                        "\n                                United Arab Emirates Women\n                            "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "vs" }, [_vm._v("VS")]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "country-name" }, [
+                      _vm._v(
+                        "\n                                Hong Kong Women\n                            "
+                      ),
+                    ]),
+                  ]),
                   _vm._v(" "),
-                  _c("div", { staticClass: "live-item" }, [_vm._v("E")]),
+                  _c("div", { staticClass: "live-item" }, [_vm._v("9:10 PM")]),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("div", { staticClass: "live-item" }, [
+                    _c("div", { staticClass: "match-circle" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "match-status" }, [
+                      _vm._v("Upcoming"),
+                    ]),
+                    _vm._v(" "),
+                    _c("small", { staticClass: "match" }, [
+                      _vm._v("1st Quater final"),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "live-item" }, [
+                    _vm._v(
+                      "\n                            C.K Pithawala Cricket Ground, Bhimpore, Surat 29\n                            Apr, 22 Local Time\n                        "
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "live-item" }, [
+                    _c("span", { staticClass: "country-logo" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "https://images.entitysport.com/assets/uploads/2020/12/Guernsey.png",
+                          itemprop: "image",
+                        },
+                      }),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "country-logo" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "https://images.entitysport.com/assets/uploads/2020/12/Guernsey.png",
+                          itemprop: "image",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "live-item" }, [
+                    _c("span", { staticClass: "country-name" }, [
+                      _vm._v(
+                        "\n                                United Arab Emirates Women\n                            "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "vs" }, [_vm._v("VS")]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "country-name" }, [
+                      _vm._v(
+                        "\n                                Hong Kong Women\n                            "
+                      ),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "live-item" }, [_vm._v("9:10 PM")]),
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c("div", { staticClass: "live-item" }, [
+                    _c("div", { staticClass: "match-circle" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "match-status" }, [
+                      _vm._v("Upcoming"),
+                    ]),
+                    _vm._v(" "),
+                    _c("small", { staticClass: "match" }, [
+                      _vm._v("1st Quater final"),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "live-item" }, [
+                    _vm._v(
+                      "\n                            C.K Pithawala Cricket Ground, Bhimpore, Surat 29\n                            Apr, 22 Local Time\n                        "
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "live-item" }, [
+                    _c("span", { staticClass: "country-logo" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "https://images.entitysport.com/assets/uploads/2020/12/Guernsey.png",
+                          itemprop: "image",
+                        },
+                      }),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "country-logo" }, [
+                      _c("img", {
+                        attrs: {
+                          src: "https://images.entitysport.com/assets/uploads/2020/12/Guernsey.png",
+                          itemprop: "image",
+                        },
+                      }),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "live-item" }, [
+                    _c("span", { staticClass: "country-name" }, [
+                      _vm._v(
+                        "\n                                United Arab Emirates Women\n                            "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "vs" }, [_vm._v("VS")]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "country-name" }, [
+                      _vm._v(
+                        "\n                                Hong Kong Women\n                            "
+                      ),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "live-item" }, [_vm._v("9:10 PM")]),
                 ]),
               ]),
             ]
@@ -40380,6 +40702,18 @@ Vue.compile = compileToFunctions;
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
