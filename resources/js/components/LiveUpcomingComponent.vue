@@ -25,63 +25,35 @@
                                     {{ item.subtitle }}
                                 </small>
                             </div>
-                            <!-- <div class="live-item">
-                                <div>
-                                    {{ item.venue.name }},
-                                    {{ item.venue.location }}
-                                </div>
-                                <div>
-                                    {{
-                                        getLocalTime(
-                                            item.status_note,
-                                            item.timestamp_start
-                                        )
-                                    }}
-                                </div>
-                            </div> -->
-                            <!-- <div class="live-item">
-                                <span class="country-logo">
-                                    <img
-                                        :src="
-                                            countryLogoUrl(item.teama.logo_url)
-                                        "
-                                        itemprop="image"
-                                    />
-                                </span>
-                                <span class="country-logo">
-                                    <img
-                                        :src="
-                                            countryLogoUrl(item.teamb.logo_url)
-                                        "
-                                        itemprop="image"
-                                    />
-                                </span>
-                            </div> -->
                             <div class="live-item">
                                 <div class="team-details">
                                     <span class="country-name">
                                         {{ item.teama.name }}
                                     </span>
-                                    <span class="country-logo">
-                                        <img
-                                            :src="
-                                                countryLogoUrl(
-                                                    item.teama.logo_url
-                                                )
-                                            "
-                                            itemprop="image"
-                                        />
+                                    <span>
+                                        <p class="country-logo">
+                                            <img
+                                                :src="
+                                                    countryLogoUrl(
+                                                        item.teama.logo_url
+                                                    )
+                                                "
+                                                itemprop="image"
+                                            />
+                                        </p>
                                     </span>
                                     <span class="vs">VS</span>
-                                    <span class="country-logo">
-                                        <img
-                                            :src="
-                                                countryLogoUrl(
-                                                    item.teamb.logo_url
-                                                )
-                                            "
-                                            itemprop="image"
-                                        />
+                                    <span>
+                                        <p class="country-logo">
+                                            <img
+                                                :src="
+                                                    countryLogoUrl(
+                                                        item.teamb.logo_url
+                                                    )
+                                                "
+                                                itemprop="image"
+                                            />
+                                        </p>
                                     </span>
                                     <span class="country-name">
                                         {{ item.teamb.name }}
@@ -98,7 +70,9 @@
                                     }}
                                 </div>
                             </div>
-                            <div class="live-item">9:10 PM</div>
+                            <div class="live-item start-time">
+                                {{ getMatchStartTime(item.date_start_ist) }}
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -113,7 +87,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import moment from "moment";
 
 export default {
     data() {
@@ -146,6 +120,9 @@ export default {
                     ? logoUrl
                     : "https://cricket.entitysport.com/assets/uploads/2020/07/team-120x120.png";
             },
+            getMatchStartTime: function (timeStr) {
+                return moment(timeStr).format("h:mm a");
+            },
         };
     },
     mounted() {
@@ -153,7 +130,7 @@ export default {
         let instance = this;
         instance.$nextTick(() => {
             instance.allMatches = getAllMatches(instance);
-            console.log(" instance.allMatches: ", instance.allMatches);
+            console.log(" moment: ", moment());
             // setInterval(() => {
             //     getMatches(instance);
             // }, 10000);
