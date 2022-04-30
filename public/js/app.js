@@ -5405,6 +5405,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Loader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Loader.vue */ "./resources/js/components/Loader.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5494,11 +5539,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
+  data: function data(props) {
     return {
       accessToken: "",
-      limit: 1,
+      limit: 10,
       startDate: prepareDateFormat(),
       endDate: "2025-01-1",
       status: 1,
@@ -5528,14 +5574,29 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  components: {
+    loader: _Loader_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  methods: {
+    hendleLoadMore: function hendleLoadMore(event, value) {
+      showLoader(false);
+      var instance = this;
+      instance.limit = value;
+      setTimeout(function () {
+        hideLoader();
+        instance.allMatches = []; //getAllMatches(this);
+      }, 1000);
+    }
+  },
   mounted: function mounted() {
-    console.log("Live Component mounted.");
     var instance = this;
     instance.$nextTick(function () {
-      instance.allMatches = getAllMatches(instance);
-      console.log(" moment: ", moment__WEBPACK_IMPORTED_MODULE_0___default()()); // setInterval(() => {
-      //     getMatches(instance);
-      // }, 10000);
+      instance.allMatches = [];
+      setTimeout(function () {
+        //getMatches(instance);
+        instance.allMatches = getAllMatches(instance);
+        hideLoader();
+      }, 1000);
     });
   }
 });
@@ -5551,7 +5612,6 @@ var prepareDateFormat = function prepareDateFormat() {
   var d = dateStr ? dateStr : new Date(),
       isoDateStr = !!d && d.toISOString(),
       dateWithoutTimezone = !!isoDateStr && isoDateStr.split("T")[0];
-  console.log("dateWithoutTimezone: ", dateWithoutTimezone);
   return dateWithoutTimezone;
 };
 /**
@@ -5567,372 +5627,396 @@ var getAllMatches = function getAllMatches(instance) {
   var filters = "&date=".concat(instance.endDate, "_").concat(instance.startDate, "&paged=1&per_page=").concat(instance.limit),
       apiUrl = "https://rest.entitysport.com/v2/matches?status=".concat(instance.status).concat(filters, "&token=").concat(accessToken);
   console.log("upcomingUrl", apiUrl);
-  return [{
-    match_id: 54430,
-    title: "Guernsey vs Norway",
-    short_title: "GUE vs Norwy",
-    subtitle: "Match 1",
-    format: 3,
-    format_str: "T20I",
-    status: 1,
-    status_str: "Scheduled",
-    status_note: "",
-    verified: "false",
-    pre_squad: "true",
-    odds_available: "false",
-    game_state: 0,
-    game_state_str: "Default",
-    domestic: "0",
-    competition: {
-      cid: 124435,
-      title: "Spain Triangular T20I Series",
-      abbr: "STT20S",
-      type: "series",
-      category: "international",
-      match_format: "t20i",
-      status: "live",
-      season: "2022",
-      datestart: "2022-04-29",
-      dateend: "2022-05-01",
-      country: "int",
-      total_matches: "6",
-      total_rounds: "1",
-      total_teams: "3"
-    },
-    teama: {
-      team_id: 10528,
-      name: "Guernsey",
-      short_name: "GUE",
-      logo_url: "https://images.entitysport.com/assets/uploads/2020/12/Guernsey.png"
-    },
-    teamb: {
-      team_id: 19682,
-      name: "Norway",
-      short_name: "Norwy",
-      logo_url: "https://images.entitysport.com/assets/uploads/2020/12/Norwaypng.png"
-    },
-    date_start: "2022-04-29 13:00:00",
-    date_end: "2022-04-29 23:00:00",
-    timestamp_start: 1651237200,
-    timestamp_end: 1651273200,
-    date_start_ist: "2022-04-29 18:30:00",
-    date_end_ist: "2022-04-30 04:30:00",
-    venue: {
-      venue_id: "1207080",
-      name: "Desert Springs Cricket Ground, Almeria",
-      location: "Almeria",
-      timezone: "-12"
-    },
-    umpires: "",
-    referee: "",
-    equation: "",
-    live: "",
-    result: "",
-    result_type: "",
-    win_margin: "",
-    winning_team_id: 0,
-    commentary: 1,
-    wagon: 0,
-    latest_inning_number: 0,
-    presquad_time: "2022-04-28 12:47:03",
-    verify_time: "",
-    toss: {
-      winner: 0,
-      decision: 0
-    }
-  }, {
-    match_id: 53368,
-    title: "Punjab Kings vs Lucknow Super Giants",
-    short_title: "PBKS vs LSG",
-    subtitle: "Match 42",
-    format: 6,
-    format_str: "T20",
-    status: 1,
-    status_str: "Scheduled",
-    status_note: "",
-    verified: "false",
-    pre_squad: "true",
-    odds_available: "false",
-    game_state: 0,
-    game_state_str: "Default",
-    domestic: "1",
-    competition: {
-      cid: 123213,
-      title: "Indian Premier League",
-      abbr: "IPL",
-      type: "tournament",
-      category: "domestic",
-      match_format: "t20",
-      status: "live",
-      season: "2022",
-      datestart: "2022-03-26",
-      dateend: "2022-05-29",
-      country: "in",
-      total_matches: "70",
-      total_rounds: "1",
-      total_teams: "10"
-    },
-    teama: {
-      team_id: 627,
-      name: "Punjab Kings",
-      short_name: "PBKS",
-      logo_url: "https://images.entitysport.com/assets/uploads/2021/03/PK-Logo.png"
-    },
-    teamb: {
-      team_id: 123214,
-      name: "Lucknow Super Giants",
-      short_name: "LSG",
-      logo_url: "https://images.entitysport.com/assets/uploads/2022/03/Lucknow-Super-Giantslogo.png"
-    },
-    date_start: "2022-04-29 14:00:00",
-    date_end: "2022-04-30 00:00:00",
-    timestamp_start: 1651240800,
-    timestamp_end: 1651276800,
-    date_start_ist: "2022-04-29 19:30:00",
-    date_end_ist: "2022-04-30 05:30:00",
-    venue: {
-      venue_id: "24",
-      name: "Maharashtra Cricket Association Stadium, Pune",
-      location: "Pune",
-      timezone: "-12"
-    },
-    umpires: "",
-    referee: "",
-    equation: "",
-    live: "",
-    result: "",
-    result_type: "",
-    win_margin: "",
-    winning_team_id: 0,
-    commentary: 1,
-    wagon: 1,
-    latest_inning_number: 0,
-    presquad_time: "2022-04-27 09:29:13",
-    verify_time: "",
-    toss: {
-      winner: 0,
-      decision: 0
-    }
-  }, {
-    match_id: 54446,
-    title: "United Arab Emirates Women vs Hong Kong Women",
-    short_title: "UAE-W vs HKG-W",
-    subtitle: "3rd T20I",
-    format: 8,
-    format_str: "Woman T20",
-    status: 1,
-    status_str: "Scheduled",
-    status_note: "",
-    verified: "false",
-    pre_squad: "true",
-    odds_available: "false",
-    game_state: 0,
-    game_state_str: "Default",
-    domestic: "0",
-    competition: {
-      cid: 124441,
-      title: "Hong Kong Women tour of UAE",
-      abbr: "HKWTOUSE",
-      type: "tour",
-      category: "women",
-      match_format: "woment20",
-      status: "live",
-      season: "2022",
-      datestart: "2022-04-27",
-      dateend: "2022-04-30",
-      country: "int",
-      total_matches: "4",
-      total_rounds: "1",
-      total_teams: "2"
-    },
-    teama: {
-      team_id: 111324,
-      name: "United Arab Emirates Women",
-      short_name: "UAE-W",
-      logo_url: "https://images.entitysport.com/assets/uploads/2020/12/United_Arab_Emirates.png"
-    },
-    teamb: {
-      team_id: 26771,
-      name: "Hong Kong Women",
-      short_name: "HKG-W",
-      logo_url: "https://images.entitysport.com/assets/uploads/2020/12/Hong_Kong.png"
-    },
-    date_start: "2022-04-29 15:10:00",
-    date_end: "2022-04-30 01:10:00",
-    timestamp_start: 1651245000,
-    timestamp_end: 1651281000,
-    date_start_ist: "2022-04-29 20:40:00",
-    date_end_ist: "2022-04-30 06:40:00",
-    venue: {
-      venue_id: "1213346",
-      name: "Malek Cricket Stadium",
-      location: "Abu Dhabi",
-      timezone: "-12"
-    },
-    umpires: "",
-    referee: "",
-    equation: "",
-    live: "",
-    result: "",
-    result_type: "",
-    win_margin: "",
-    winning_team_id: 0,
-    commentary: 1,
-    wagon: 0,
-    latest_inning_number: 0,
-    presquad_time: "2022-04-28 21:05:58",
-    verify_time: "",
-    toss: {
-      winner: 0,
-      decision: 0
-    }
-  }, {
-    match_id: 54450,
-    title: "Surrey Risers vs United Stars",
-    short_title: "SRI vs UNS",
-    subtitle: "Match 21",
-    format: 17,
-    format_str: "T10",
-    status: 1,
-    status_str: "Scheduled",
-    status_note: "",
-    verified: "false",
-    pre_squad: "true",
-    odds_available: "false",
-    game_state: 0,
-    game_state_str: "Default",
-    domestic: "1",
-    competition: {
-      cid: 124334,
-      title: "Dream11 Jamaica T10",
-      abbr: "JamaicaT10",
-      type: "tournament",
-      category: "domestic",
-      match_format: "t10",
-      status: "live",
-      season: "2022",
-      datestart: "2022-04-19",
-      dateend: "2022-05-05",
-      country: "int",
-      total_matches: "25",
-      total_rounds: "1",
-      total_teams: "6"
-    },
-    teama: {
-      team_id: 124338,
-      name: "Surrey Risers",
-      short_name: "SRI",
-      logo_url: "https://images.entitysport.com/assets/uploads/2022/04/SRI-CR2@2x.png"
-    },
-    teamb: {
-      team_id: 124341,
-      name: "United Stars",
-      short_name: "UNS",
-      logo_url: "https://images.entitysport.com/assets/uploads/2022/04/UNS-CR1@2x.png"
-    },
-    date_start: "2022-04-29 15:45:00",
-    date_end: "2022-04-30 01:45:00",
-    timestamp_start: 1651247100,
-    timestamp_end: 1651283100,
-    date_start_ist: "2022-04-29 21:15:00",
-    date_end_ist: "2022-04-30 07:15:00",
-    venue: {
-      venue_id: "84",
-      name: "Sabina Park, Kingston, Jamaica",
-      location: "Kingston",
-      timezone: "-12"
-    },
-    umpires: "",
-    referee: "",
-    equation: "",
-    live: "",
-    result: "",
-    result_type: "",
-    win_margin: "",
-    winning_team_id: 0,
-    commentary: 1,
-    wagon: 0,
-    latest_inning_number: 0,
-    presquad_time: "2022-04-27 22:12:10",
-    verify_time: "",
-    toss: {
-      winner: 0,
-      decision: 0
-    }
-  }, {
-    match_id: 54471,
-    title: "Kabul Zalmi Live Star vs Rehan Khan Events",
-    short_title: " KZLS vs RKE",
-    subtitle: "Pre Quarter-final 1",
-    format: 17,
-    format_str: "T10",
-    status: 1,
-    status_str: "Scheduled",
-    status_note: "",
-    verified: "false",
-    pre_squad: "true",
-    odds_available: "false",
-    game_state: 0,
-    game_state_str: "Default",
-    domestic: "1",
-    competition: {
-      cid: 124357,
-      title: "Sharjah Ramadan T10 League",
-      abbr: "SRT10",
-      type: "tournament",
-      category: "domestic",
-      match_format: "t10",
-      status: "live",
-      season: "2022",
-      datestart: "2022-04-20",
-      dateend: "2022-05-10",
-      country: "ae",
-      total_matches: "37",
-      total_rounds: "1",
-      total_teams: "19"
-    },
-    teama: {
-      team_id: 123103,
-      name: "Kabul Zalmi Live Star",
-      short_name: " KZLS",
-      logo_url: "https://images.entitysport.com/assets/uploads/2022/02/Kabul-Zalmi-Live-Star.png"
-    },
-    teamb: {
-      team_id: 123803,
-      name: "Rehan Khan Events",
-      short_name: "RKE",
-      logo_url: "https://images.entitysport.com/assets/uploads/2022/03/RKE-CR1@2x.png"
-    },
-    date_start: "2022-04-29 16:00:00",
-    date_end: "2022-04-30 02:00:00",
-    timestamp_start: 1651248000,
-    timestamp_end: 1651284000,
-    date_start_ist: "2022-04-29 21:30:00",
-    date_end_ist: "2022-04-30 07:30:00",
-    venue: {
-      venue_id: "98",
-      name: "Sharjah Cricket Stadium",
-      location: "Sharjah",
-      timezone: "-12"
-    },
-    umpires: "",
-    referee: "",
-    equation: "",
-    live: "",
-    result: "",
-    result_type: "",
-    win_margin: "",
-    winning_team_id: 0,
-    commentary: 1,
-    wagon: 0,
-    latest_inning_number: 0,
-    presquad_time: "2022-04-29 05:00:28",
-    verify_time: "",
-    toss: {
-      winner: 0,
-      decision: 0
-    }
-  }]; // axios
+  axios.get(apiUrl).then(function (res) {
+    console.log("items: ", res);
+  })["catch"](function (error) {
+    console.log("Pappu");
+    instance.isValidAccToken = false;
+    instance.matches = [];
+    console.log(error);
+  }); // return [
+  //     {
+  //         match_id: 54430,
+  //         title: "Guernsey vs Norway",
+  //         short_title: "GUE vs Norwy",
+  //         subtitle: "Match 1",
+  //         format: 3,
+  //         format_str: "T20I",
+  //         status: 1,
+  //         status_str: "Scheduled",
+  //         status_note: "",
+  //         verified: "false",
+  //         pre_squad: "true",
+  //         odds_available: "false",
+  //         game_state: 0,
+  //         game_state_str: "Default",
+  //         domestic: "0",
+  //         competition: {
+  //             cid: 124435,
+  //             title: "Spain Triangular T20I Series",
+  //             abbr: "STT20S",
+  //             type: "series",
+  //             category: "international",
+  //             match_format: "t20i",
+  //             status: "live",
+  //             season: "2022",
+  //             datestart: "2022-04-29",
+  //             dateend: "2022-05-01",
+  //             country: "int",
+  //             total_matches: "6",
+  //             total_rounds: "1",
+  //             total_teams: "3",
+  //         },
+  //         teama: {
+  //             team_id: 10528,
+  //             name: "Guernsey",
+  //             short_name: "GUE",
+  //             logo_url:
+  //                 "https://images.entitysport.com/assets/uploads/2020/12/Guernsey.png",
+  //         },
+  //         teamb: {
+  //             team_id: 19682,
+  //             name: "Norway",
+  //             short_name: "Norwy",
+  //             logo_url:
+  //                 "https://images.entitysport.com/assets/uploads/2020/12/Norwaypng.png",
+  //         },
+  //         date_start: "2022-04-29 13:00:00",
+  //         date_end: "2022-04-29 23:00:00",
+  //         timestamp_start: 1651237200,
+  //         timestamp_end: 1651273200,
+  //         date_start_ist: "2022-04-29 18:30:00",
+  //         date_end_ist: "2022-04-30 04:30:00",
+  //         venue: {
+  //             venue_id: "1207080",
+  //             name: "Desert Springs Cricket Ground, Almeria",
+  //             location: "Almeria",
+  //             timezone: "-12",
+  //         },
+  //         umpires: "",
+  //         referee: "",
+  //         equation: "",
+  //         live: "",
+  //         result: "",
+  //         result_type: "",
+  //         win_margin: "",
+  //         winning_team_id: 0,
+  //         commentary: 1,
+  //         wagon: 0,
+  //         latest_inning_number: 0,
+  //         presquad_time: "2022-04-28 12:47:03",
+  //         verify_time: "",
+  //         toss: {
+  //             winner: 0,
+  //             decision: 0,
+  //         },
+  //     },
+  //     {
+  //         match_id: 53368,
+  //         title: "Punjab Kings vs Lucknow Super Giants",
+  //         short_title: "PBKS vs LSG",
+  //         subtitle: "Match 42",
+  //         format: 6,
+  //         format_str: "T20",
+  //         status: 1,
+  //         status_str: "Scheduled",
+  //         status_note: "",
+  //         verified: "false",
+  //         pre_squad: "true",
+  //         odds_available: "false",
+  //         game_state: 0,
+  //         game_state_str: "Default",
+  //         domestic: "1",
+  //         competition: {
+  //             cid: 123213,
+  //             title: "Indian Premier League",
+  //             abbr: "IPL",
+  //             type: "tournament",
+  //             category: "domestic",
+  //             match_format: "t20",
+  //             status: "live",
+  //             season: "2022",
+  //             datestart: "2022-03-26",
+  //             dateend: "2022-05-29",
+  //             country: "in",
+  //             total_matches: "70",
+  //             total_rounds: "1",
+  //             total_teams: "10",
+  //         },
+  //         teama: {
+  //             team_id: 627,
+  //             name: "Punjab Kings",
+  //             short_name: "PBKS",
+  //             logo_url:
+  //                 "https://images.entitysport.com/assets/uploads/2021/03/PK-Logo.png",
+  //         },
+  //         teamb: {
+  //             team_id: 123214,
+  //             name: "Lucknow Super Giants",
+  //             short_name: "LSG",
+  //             logo_url:
+  //                 "https://images.entitysport.com/assets/uploads/2022/03/Lucknow-Super-Giantslogo.png",
+  //         },
+  //         date_start: "2022-04-29 14:00:00",
+  //         date_end: "2022-04-30 00:00:00",
+  //         timestamp_start: 1651240800,
+  //         timestamp_end: 1651276800,
+  //         date_start_ist: "2022-04-29 19:30:00",
+  //         date_end_ist: "2022-04-30 05:30:00",
+  //         venue: {
+  //             venue_id: "24",
+  //             name: "Maharashtra Cricket Association Stadium, Pune",
+  //             location: "Pune",
+  //             timezone: "-12",
+  //         },
+  //         umpires: "",
+  //         referee: "",
+  //         equation: "",
+  //         live: "",
+  //         result: "",
+  //         result_type: "",
+  //         win_margin: "",
+  //         winning_team_id: 0,
+  //         commentary: 1,
+  //         wagon: 1,
+  //         latest_inning_number: 0,
+  //         presquad_time: "2022-04-27 09:29:13",
+  //         verify_time: "",
+  //         toss: {
+  //             winner: 0,
+  //             decision: 0,
+  //         },
+  //     },
+  //     {
+  //         match_id: 54446,
+  //         title: "United Arab Emirates Women vs Hong Kong Women",
+  //         short_title: "UAE-W vs HKG-W",
+  //         subtitle: "3rd T20I",
+  //         format: 8,
+  //         format_str: "Woman T20",
+  //         status: 1,
+  //         status_str: "Scheduled",
+  //         status_note: "",
+  //         verified: "false",
+  //         pre_squad: "true",
+  //         odds_available: "false",
+  //         game_state: 0,
+  //         game_state_str: "Default",
+  //         domestic: "0",
+  //         competition: {
+  //             cid: 124441,
+  //             title: "Hong Kong Women tour of UAE",
+  //             abbr: "HKWTOUSE",
+  //             type: "tour",
+  //             category: "women",
+  //             match_format: "woment20",
+  //             status: "live",
+  //             season: "2022",
+  //             datestart: "2022-04-27",
+  //             dateend: "2022-04-30",
+  //             country: "int",
+  //             total_matches: "4",
+  //             total_rounds: "1",
+  //             total_teams: "2",
+  //         },
+  //         teama: {
+  //             team_id: 111324,
+  //             name: "United Arab Emirates Women",
+  //             short_name: "UAE-W",
+  //             logo_url:
+  //                 "https://images.entitysport.com/assets/uploads/2020/12/United_Arab_Emirates.png",
+  //         },
+  //         teamb: {
+  //             team_id: 26771,
+  //             name: "Hong Kong Women",
+  //             short_name: "HKG-W",
+  //             logo_url:
+  //                 "https://images.entitysport.com/assets/uploads/2020/12/Hong_Kong.png",
+  //         },
+  //         date_start: "2022-04-29 15:10:00",
+  //         date_end: "2022-04-30 01:10:00",
+  //         timestamp_start: 1651245000,
+  //         timestamp_end: 1651281000,
+  //         date_start_ist: "2022-04-29 20:40:00",
+  //         date_end_ist: "2022-04-30 06:40:00",
+  //         venue: {
+  //             venue_id: "1213346",
+  //             name: "Malek Cricket Stadium",
+  //             location: "Abu Dhabi",
+  //             timezone: "-12",
+  //         },
+  //         umpires: "",
+  //         referee: "",
+  //         equation: "",
+  //         live: "",
+  //         result: "",
+  //         result_type: "",
+  //         win_margin: "",
+  //         winning_team_id: 0,
+  //         commentary: 1,
+  //         wagon: 0,
+  //         latest_inning_number: 0,
+  //         presquad_time: "2022-04-28 21:05:58",
+  //         verify_time: "",
+  //         toss: {
+  //             winner: 0,
+  //             decision: 0,
+  //         },
+  //     },
+  //     {
+  //         match_id: 54450,
+  //         title: "Surrey Risers vs United Stars",
+  //         short_title: "SRI vs UNS",
+  //         subtitle: "Match 21",
+  //         format: 17,
+  //         format_str: "T10",
+  //         status: 1,
+  //         status_str: "Scheduled",
+  //         status_note: "",
+  //         verified: "false",
+  //         pre_squad: "true",
+  //         odds_available: "false",
+  //         game_state: 0,
+  //         game_state_str: "Default",
+  //         domestic: "1",
+  //         competition: {
+  //             cid: 124334,
+  //             title: "Dream11 Jamaica T10",
+  //             abbr: "JamaicaT10",
+  //             type: "tournament",
+  //             category: "domestic",
+  //             match_format: "t10",
+  //             status: "live",
+  //             season: "2022",
+  //             datestart: "2022-04-19",
+  //             dateend: "2022-05-05",
+  //             country: "int",
+  //             total_matches: "25",
+  //             total_rounds: "1",
+  //             total_teams: "6",
+  //         },
+  //         teama: {
+  //             team_id: 124338,
+  //             name: "Surrey Risers",
+  //             short_name: "SRI",
+  //             logo_url:
+  //                 "https://images.entitysport.com/assets/uploads/2022/04/SRI-CR2@2x.png",
+  //         },
+  //         teamb: {
+  //             team_id: 124341,
+  //             name: "United Stars",
+  //             short_name: "UNS",
+  //             logo_url:
+  //                 "https://images.entitysport.com/assets/uploads/2022/04/UNS-CR1@2x.png",
+  //         },
+  //         date_start: "2022-04-29 15:45:00",
+  //         date_end: "2022-04-30 01:45:00",
+  //         timestamp_start: 1651247100,
+  //         timestamp_end: 1651283100,
+  //         date_start_ist: "2022-04-29 21:15:00",
+  //         date_end_ist: "2022-04-30 07:15:00",
+  //         venue: {
+  //             venue_id: "84",
+  //             name: "Sabina Park, Kingston, Jamaica",
+  //             location: "Kingston",
+  //             timezone: "-12",
+  //         },
+  //         umpires: "",
+  //         referee: "",
+  //         equation: "",
+  //         live: "",
+  //         result: "",
+  //         result_type: "",
+  //         win_margin: "",
+  //         winning_team_id: 0,
+  //         commentary: 1,
+  //         wagon: 0,
+  //         latest_inning_number: 0,
+  //         presquad_time: "2022-04-27 22:12:10",
+  //         verify_time: "",
+  //         toss: {
+  //             winner: 0,
+  //             decision: 0,
+  //         },
+  //     },
+  //     {
+  //         match_id: 54471,
+  //         title: "Kabul Zalmi Live Star vs Rehan Khan Events",
+  //         short_title: " KZLS vs RKE",
+  //         subtitle: "Pre Quarter-final 1",
+  //         format: 17,
+  //         format_str: "T10",
+  //         status: 1,
+  //         status_str: "Scheduled",
+  //         status_note: "",
+  //         verified: "false",
+  //         pre_squad: "true",
+  //         odds_available: "false",
+  //         game_state: 0,
+  //         game_state_str: "Default",
+  //         domestic: "1",
+  //         competition: {
+  //             cid: 124357,
+  //             title: "Sharjah Ramadan T10 League",
+  //             abbr: "SRT10",
+  //             type: "tournament",
+  //             category: "domestic",
+  //             match_format: "t10",
+  //             status: "live",
+  //             season: "2022",
+  //             datestart: "2022-04-20",
+  //             dateend: "2022-05-10",
+  //             country: "ae",
+  //             total_matches: "37",
+  //             total_rounds: "1",
+  //             total_teams: "19",
+  //         },
+  //         teama: {
+  //             team_id: 123103,
+  //             name: "Kabul Zalmi Live Star",
+  //             short_name: " KZLS",
+  //             logo_url:
+  //                 "https://images.entitysport.com/assets/uploads/2022/02/Kabul-Zalmi-Live-Star.png",
+  //         },
+  //         teamb: {
+  //             team_id: 123803,
+  //             name: "Rehan Khan Events",
+  //             short_name: "RKE",
+  //             logo_url:
+  //                 "https://images.entitysport.com/assets/uploads/2022/03/RKE-CR1@2x.png",
+  //         },
+  //         date_start: "2022-04-29 16:00:00",
+  //         date_end: "2022-04-30 02:00:00",
+  //         timestamp_start: 1651248000,
+  //         timestamp_end: 1651284000,
+  //         date_start_ist: "2022-04-29 21:30:00",
+  //         date_end_ist: "2022-04-30 07:30:00",
+  //         venue: {
+  //             venue_id: "98",
+  //             name: "Sharjah Cricket Stadium",
+  //             location: "Sharjah",
+  //             timezone: "-12",
+  //         },
+  //         umpires: "",
+  //         referee: "",
+  //         equation: "",
+  //         live: "",
+  //         result: "",
+  //         result_type: "",
+  //         win_margin: "",
+  //         winning_team_id: 0,
+  //         commentary: 1,
+  //         wagon: 0,
+  //         latest_inning_number: 0,
+  //         presquad_time: "2022-04-29 05:00:28",
+  //         verify_time: "",
+  //         toss: {
+  //             winner: 0,
+  //             decision: 0,
+  //         },
+  //     },
+  // ];
+  // axios
   //     .get(apiUrl)
   //     .then((res) => {
   //         console.log("items: ", res);
@@ -5943,6 +6027,85 @@ var getAllMatches = function getAllMatches(instance) {
   //         console.log(error);
   //     });
 };
+/**
+ * Show page loader
+ * @param boolean true/false
+ * @result page loader show
+ */
+
+
+var showLoader = function showLoader() {
+  var isOverlay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+  if (isOverlay) {
+    $("#overlayer").show();
+  }
+
+  $(".loader").show();
+};
+/**
+ * Hide page loader
+ * @param boolean true/false
+ * @result page loader hode
+ */
+
+
+var hideLoader = function hideLoader() {
+  var isOverlay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+  if (isOverlay) {
+    $("#overlayer").hide();
+  }
+
+  $(".loader").hide();
+};
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Loader.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Loader.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["dataLimit"],
+  data: function data() {
+    var propsData = this.$props;
+    return {
+      limit: propsData && propsData.dataLimit ? propsData.dataLimit : "10",
+      prevLimit: ""
+    };
+  },
+  methods: {
+    customChange: function customChange() {
+      var instance = this,
+          newLimit = instance.limit + 10;
+
+      if (instance.prevLimit) {
+        newLimit = instance.prevLimit + 10;
+        instance.prevLimit = newLimit;
+      } else {
+        instance.prevLimit = newLimit;
+      }
+
+      this.$emit("hendleLoadMore", instance, newLimit);
+    }
+  }
+});
 
 /***/ }),
 
@@ -50083,6 +50246,45 @@ component.options.__file = "resources/js/components/LiveUpcomingComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Loader.vue":
+/*!********************************************!*\
+  !*** ./resources/js/components/Loader.vue ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Loader_vue_vue_type_template_id_e79ec684___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Loader.vue?vue&type=template&id=e79ec684& */ "./resources/js/components/Loader.vue?vue&type=template&id=e79ec684&");
+/* harmony import */ var _Loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Loader.vue?vue&type=script&lang=js& */ "./resources/js/components/Loader.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Loader_vue_vue_type_template_id_e79ec684___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Loader_vue_vue_type_template_id_e79ec684___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Loader.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
@@ -50112,6 +50314,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpcomingComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LiveUpcomingComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LiveUpcomingComponent.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpcomingComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Loader.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/Loader.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Loader.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Loader.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -50145,6 +50363,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpcomingComponent_vue_vue_type_template_id_3e0b13da___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LiveUpcomingComponent_vue_vue_type_template_id_3e0b13da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LiveUpcomingComponent.vue?vue&type=template&id=3e0b13da& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/LiveUpcomingComponent.vue?vue&type=template&id=3e0b13da&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Loader.vue?vue&type=template&id=e79ec684&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Loader.vue?vue&type=template&id=e79ec684& ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_template_id_e79ec684___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_template_id_e79ec684___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Loader_vue_vue_type_template_id_e79ec684___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Loader.vue?vue&type=template&id=e79ec684& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Loader.vue?vue&type=template&id=e79ec684&");
 
 
 /***/ }),
@@ -50214,119 +50449,155 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-md-12" }, [
+    _c("div", { staticClass: "col-md-12 tab-container" }, [
       _vm._m(0),
       _vm._v(" "),
-      _c("div", { staticClass: "tab-content" }, [
-        _c(
-          "div",
-          {
-            staticClass: "tab-pane active",
-            attrs: { id: "liveUpcomingContainer" },
-          },
-          [
-            _c(
-              "ul",
-              { staticClass: "live-container" },
-              _vm._l(_vm.allMatches, function (item) {
-                return _c("li", { key: item.match_id }, [
-                  _c("div", { staticClass: "live-item" }, [
-                    _c("div", { staticClass: "match-circle" }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "match-status" }, [
-                      _vm._v(
-                        "\n                                " +
-                          _vm._s(_vm.getStatusStr(item.status)) +
-                          "\n                            "
-                      ),
-                    ]),
-                    _vm._v(" "),
-                    _c("small", { staticClass: "match" }, [
-                      _vm._v(
-                        "\n                                " +
-                          _vm._s(item.subtitle) +
-                          "\n                            "
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "live-item" }, [
-                    _c("div", { staticClass: "team-details" }, [
-                      _c("span", { staticClass: "country-name" }, [
-                        _vm._v(
-                          "\n                                    " +
-                            _vm._s(item.teama.name) +
-                            "\n                                "
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("span", [
-                        _c("p", { staticClass: "country-logo" }, [
-                          _c("img", {
-                            attrs: {
-                              src: _vm.countryLogoUrl(item.teama.logo_url),
-                              itemprop: "image",
-                            },
-                          }),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "vs" }, [_vm._v("VS")]),
-                      _vm._v(" "),
-                      _c("span", [
-                        _c("p", { staticClass: "country-logo" }, [
-                          _c("img", {
-                            attrs: {
-                              src: _vm.countryLogoUrl(item.teamb.logo_url),
-                              itemprop: "image",
-                            },
-                          }),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "country-name" }, [
-                        _vm._v(
-                          "\n                                    " +
-                            _vm._s(item.teamb.name) +
-                            "\n                                "
-                        ),
-                      ]),
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "venu-name" }, [
-                      _vm._v(
-                        "\n                                " +
-                          _vm._s(item.venue.name) +
-                          ",\n                                " +
-                          _vm._s(item.venue.location) +
-                          "\n                                " +
-                          _vm._s(
-                            _vm.getLocalTime(
-                              item.status_note,
-                              item.timestamp_start
-                            )
-                          ) +
-                          "\n                            "
-                      ),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "live-item start-time" }, [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(_vm.getMatchStartTime(item.date_start_ist)) +
-                        "\n                        "
+      _c(
+        "div",
+        { staticClass: "tab-content", attrs: { id: "nav-tabContent" } },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "tab-pane fade show active",
+              attrs: {
+                id: "liveUpcomingContainer",
+                role: "tabpanel",
+                "aria-labelledby": "nav-home-tab",
+              },
+            },
+            [
+              _vm.allMatches
+                ? _c("div", [
+                    _c(
+                      "ul",
+                      { staticClass: "live-container" },
+                      _vm._l(_vm.allMatches, function (item) {
+                        return _c("li", { key: item.match_id }, [
+                          _c("div", { staticClass: "live-item" }, [
+                            _c("div", { staticClass: "match-circle" }),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "match-status" }, [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(_vm.getStatusStr(item.status)) +
+                                  "\n                                "
+                              ),
+                            ]),
+                            _vm._v(" "),
+                            _c("small", { staticClass: "match" }, [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(item.subtitle) +
+                                  "\n                                "
+                              ),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "live-item" }, [
+                            _c("div", { staticClass: "team-details" }, [
+                              _c("span", { staticClass: "country-name" }, [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(item.teama.name) +
+                                    "\n                                    "
+                                ),
+                              ]),
+                              _vm._v(" "),
+                              _c("span", [
+                                _c("p", { staticClass: "country-logo" }, [
+                                  _c("img", {
+                                    attrs: {
+                                      src: _vm.countryLogoUrl(
+                                        item.teama.logo_url
+                                      ),
+                                      itemprop: "image",
+                                    },
+                                  }),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "vs" }, [_vm._v("VS")]),
+                              _vm._v(" "),
+                              _c("span", [
+                                _c("p", { staticClass: "country-logo" }, [
+                                  _c("img", {
+                                    attrs: {
+                                      src: _vm.countryLogoUrl(
+                                        item.teamb.logo_url
+                                      ),
+                                      itemprop: "image",
+                                    },
+                                  }),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "country-name" }, [
+                                _vm._v(
+                                  "\n                                        " +
+                                    _vm._s(item.teamb.name) +
+                                    "\n                                    "
+                                ),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "venu-name" }, [
+                              _vm._v(
+                                "\n                                    " +
+                                  _vm._s(item.venue.name) +
+                                  ",\n                                    " +
+                                  _vm._s(item.venue.location) +
+                                  "\n                                    " +
+                                  _vm._s(
+                                    _vm.getLocalTime(
+                                      item.status_note,
+                                      item.timestamp_start
+                                    )
+                                  ) +
+                                  "\n                                "
+                              ),
+                            ]),
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "live-item start-time" }, [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(
+                                  _vm.getMatchStartTime(item.date_start_ist)
+                                ) +
+                                "\n                            "
+                            ),
+                          ]),
+                        ])
+                      }),
+                      0
                     ),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "row" },
+                      [
+                        _c("loader", {
+                          attrs: { dataLimit: _vm.limit },
+                          on: { hendleLoadMore: _vm.hendleLoadMore },
+                        }),
+                      ],
+                      1
+                    ),
+                  ])
+                : _c("div", [
+                    _c("div", { staticClass: "not-foun-msg" }, [
+                      _vm._v(
+                        "\n                        We didn't find anything to show here.\n                    "
+                      ),
+                    ]),
                   ]),
-                ])
-              }),
-              0
-            ),
-          ]
-        ),
-        _vm._v(" "),
-        _vm._m(1),
-      ]),
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(1),
+        ]
+      ),
     ]),
   ])
 }
@@ -50335,33 +50606,110 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "nav nav-tabs" }, [
-      _c("li", { staticClass: "active" }, [
-        _c(
-          "a",
-          { attrs: { "data-toggle": "tab", href: "#liveUpcomingContainer" } },
-          [_vm._v("\n                    Live & Upcoming\n                ")]
-        ),
-      ]),
-      _vm._v(" "),
-      _c("li", [
-        _c("a", { attrs: { "data-toggle": "tab", href: "#result" } }, [
-          _vm._v("Result"),
-        ]),
-      ]),
+    return _c("nav", [
+      _c(
+        "div",
+        {
+          staticClass: "nav nav-tabs",
+          attrs: { id: "nav-tab", role: "tablist" },
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "nav-link active",
+              attrs: {
+                id: "nav-home-tab",
+                "data-bs-toggle": "tab",
+                "data-bs-target": "#liveUpcomingContainer",
+                type: "button",
+                role: "tab",
+                "aria-controls": "nav-home",
+                "aria-selected": "true",
+              },
+            },
+            [_vm._v("\n                    Live & Upcoming\n                ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "nav-link",
+              attrs: {
+                id: "nav-profile-tab",
+                "data-bs-toggle": "tab",
+                "data-bs-target": "#result",
+                type: "button",
+                role: "tab",
+                "aria-controls": "nav-profile",
+                "aria-selected": "false",
+              },
+            },
+            [_vm._v("\n                    Result\n                ")]
+          ),
+        ]
+      ),
     ])
   },
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "tab-pane", attrs: { id: "result" } }, [
-      _c("h3", [_vm._v("Result")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Some content in result.")]),
-    ])
+    return _c(
+      "div",
+      {
+        staticClass: "tab-pane fade",
+        attrs: {
+          id: "result",
+          role: "tabpanel",
+          "aria-labelledby": "nav-profile-tab",
+        },
+      },
+      [
+        _c("div", { staticClass: "not-foun-msg" }, [
+          _vm._v(
+            "\n                    We didn't find anything to show here.\n                "
+          ),
+        ]),
+      ]
+    )
   },
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Loader.vue?vue&type=template&id=e79ec684&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Loader.vue?vue&type=template&id=e79ec684& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "text-center" }, [
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-primary",
+        attrs: { type: "button" },
+        on: { click: _vm.customChange },
+      },
+      [_vm._v("\n        Load more +\n    ")]
+    ),
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

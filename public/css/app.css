@@ -11,6 +11,53 @@ body {
     background-color: #f3f3f3;
 }
 
+/*************
+* Start loader 
+ *************/
+#overlayer {
+    position: fixed;
+    z-index: 9999;
+    background: white;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.loader {
+    position: fixed;
+    top: calc(50% - 20px);
+    left: calc(50% - 20px);
+    z-index: 99999;
+    border: 6px solid #e3e5d2;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+}
+
+.loader {
+    border-top: 6px solid #1ab394;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/*************
+* End loader 
+ *************/
+
+/*************
+* Start tab container 
+ *************/
+.tab-container {
+    margin: 30px 0;
+}
+
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:focus,
 .nav-tabs > li.active > a:hover {
@@ -19,10 +66,16 @@ body {
 
 .tab-content {
     background: #fff;
+    padding-bottom: 30px;
+}
+
+.not-foun-msg {
+    padding: 20px;
+    text-align: center;
 }
 
 ul.live-container {
-    margin: 0;
+    margin: 0 0 30px;
     padding: 0;
 }
 
@@ -43,7 +96,7 @@ ul.live-container li:hover {
     flex-wrap: wrap;
     align-self: center;
     padding: 15px;
-    flex-basis: 25%;
+    flex-basis: 23%;
 }
 
 ul.live-container li > .live-item:nth-child(2) {
@@ -117,7 +170,7 @@ ul.live-container li:last-child {
 
 .team-details span:nth-child(1),
 .team-details span:nth-child(5) {
-    flex-basis: 30%;
+    flex-basis: 32%;
 }
 
 .team-details span:nth-child(2),
@@ -142,7 +195,7 @@ ul.live-container li:last-child {
 .vs,
 .start-time {
     font-weight: 700;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: #31404b;
 }
 
@@ -155,3 +208,7 @@ ul.live-container li:last-child {
     width: 100%;
     margin: 10px 0;
 }
+
+/*************
+* End tab container 
+ *************/

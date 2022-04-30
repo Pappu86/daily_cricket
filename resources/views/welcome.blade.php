@@ -21,6 +21,8 @@
 </head>
 
 <body class="antialiased">
+    <div id="overlayer"></div>
+    <span class="loader"></span>
     <div class="container">
         <div id="app">
             <live-upcoming></live-upcoming>
