@@ -125,12 +125,12 @@ ul.live-container li:last-child {
 
 .match-status {
     z-index: 1;
-    width: 100px;
+    max-width: 100px;
     background: #2978fb;
     border-radius: 0 10px 10px 0;
     margin-left: -40px;
     margin-top: 7px;
-    padding: 0px;
+    padding: 0px 15px 0 0;
     height: 35px;
     text-indent: 13px;
     line-height: 3;

@@ -25,9 +25,11 @@
     },
     "dependencies": {
         "cross-env": "^7.0.3",
+        "http": "0.0.1-security",
         "moment": "^2.29.3",
         "router-link": "0.0.4",
         "vue-axios": "^3.4.1",
-        "vue-router": "^4.0.14"
+        "vue-router": "^4.0.14",
+        "vuex": "^4.0.2"
     }
 }

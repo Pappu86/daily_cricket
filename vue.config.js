@@ -1,8 +1,5 @@
 module.exports = {
-    purge: [],
-    theme: {
-        extend: {},
+    devServer: {
+        proxy: "https://cors-anywhere.herokuapp.com/",
     },
-    variants: {},
-    plugins: [],
 };

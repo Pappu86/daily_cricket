@@ -5405,7 +5405,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Loader_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Loader.vue */ "./resources/js/components/Loader.vue");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Loader_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Loader.vue */ "./resources/js/components/Loader.vue");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 //
 //
 //
@@ -5538,6 +5552,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5549,7 +5567,7 @@ __webpack_require__.r(__webpack_exports__);
       endDate: "2025-01-1",
       status: 1,
       isValidAPIToken: false,
-      allMatches: [],
+      cricketMatches: [],
       getStatusStr: function getStatusStr(status) {
         var statusStr = "Upcoming";
 
@@ -5575,26 +5593,26 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   components: {
-    loader: _Loader_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    loader: _Loader_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   methods: {
     hendleLoadMore: function hendleLoadMore(event, value) {
+      var _this = this;
+
       showLoader(false);
       var instance = this;
       instance.limit = value;
       setTimeout(function () {
         hideLoader();
-        instance.allMatches = []; //getAllMatches(this);
+        setCricketMatches(_this);
       }, 1000);
     }
   },
   mounted: function mounted() {
     var instance = this;
     instance.$nextTick(function () {
-      instance.allMatches = [];
       setTimeout(function () {
-        //getMatches(instance);
-        instance.allMatches = getAllMatches(instance);
+        setCricketMatches(instance);
         hideLoader();
       }, 1000);
     });
@@ -5618,413 +5636,40 @@ var prepareDateFormat = function prepareDateFormat() {
  * Get all match info
  *
  * @param vue instance
- * @return All matches info
+ * @set All cricket matches data in this instance
  */
 
 
-var getAllMatches = function getAllMatches(instance) {
+var setCricketMatches = function setCricketMatches(instance) {
   var accessToken = "9e272eadc7907624ee8bb8d4b0eca1f5";
   var filters = "&date=".concat(instance.endDate, "_").concat(instance.startDate, "&paged=1&per_page=").concat(instance.limit),
-      apiUrl = "https://rest.entitysport.com/v2/matches?status=".concat(instance.status).concat(filters, "&token=").concat(accessToken);
-  console.log("upcomingUrl", apiUrl); // $.ajax({
-  //     url: apiUrl,
-  //     jsonp: "callback",
-  //     dataType: "jsonp",
-  //     // data: {
-  //     //     status: "1",
-  //     //     token: accessToken,
-  //     // },
-  //     success: function (response) {
-  //         console.log(response);
-  //     },
-  // });
-  // axios
-  //     .get(apiUrl)
-  //     .then((res) => {
-  //         console.log("items: ", res);
-  //     })
-  //     .catch((error) => {
-  //         console.log("Pappu");
-  //         instance.isValidAccToken = false;
-  //         instance.matches = [];
-  //         console.log(error);
-  //     });
+      apiUrl = "https://rest.entitysport.com/v2/matches?status=".concat(instance.status).concat(filters, "&token=").concat(accessToken),
+      liveApiUrl = "https://rest.entitysport.com/v2/matches?status=3".concat(filters, "&token=").concat(accessToken),
+      upcomingMetches = [],
+      liveMatches = [];
+  $.ajax({
+    type: "GET",
+    dataType: "json",
+    url: liveApiUrl,
+    success: function success(data) {
+      if (data && data.response && lodash__WEBPACK_IMPORTED_MODULE_1___default().size(data.response.items)) {
+        liveMatches = data.response.items;
+      }
 
-  return [{
-    match_id: 54430,
-    title: "Guernsey vs Norway",
-    short_title: "GUE vs Norwy",
-    subtitle: "Match 1",
-    format: 3,
-    format_str: "T20I",
-    status: 1,
-    status_str: "Scheduled",
-    status_note: "",
-    verified: "false",
-    pre_squad: "true",
-    odds_available: "false",
-    game_state: 0,
-    game_state_str: "Default",
-    domestic: "0",
-    competition: {
-      cid: 124435,
-      title: "Spain Triangular T20I Series",
-      abbr: "STT20S",
-      type: "series",
-      category: "international",
-      match_format: "t20i",
-      status: "live",
-      season: "2022",
-      datestart: "2022-04-29",
-      dateend: "2022-05-01",
-      country: "int",
-      total_matches: "6",
-      total_rounds: "1",
-      total_teams: "3"
-    },
-    teama: {
-      team_id: 10528,
-      name: "Guernsey",
-      short_name: "GUE",
-      logo_url: "https://images.entitysport.com/assets/uploads/2020/12/Guernsey.png"
-    },
-    teamb: {
-      team_id: 19682,
-      name: "Norway",
-      short_name: "Norwy",
-      logo_url: "https://images.entitysport.com/assets/uploads/2020/12/Norwaypng.png"
-    },
-    date_start: "2022-04-29 13:00:00",
-    date_end: "2022-04-29 23:00:00",
-    timestamp_start: 1651237200,
-    timestamp_end: 1651273200,
-    date_start_ist: "2022-04-29 18:30:00",
-    date_end_ist: "2022-04-30 04:30:00",
-    venue: {
-      venue_id: "1207080",
-      name: "Desert Springs Cricket Ground, Almeria",
-      location: "Almeria",
-      timezone: "-12"
-    },
-    umpires: "",
-    referee: "",
-    equation: "",
-    live: "",
-    result: "",
-    result_type: "",
-    win_margin: "",
-    winning_team_id: 0,
-    commentary: 1,
-    wagon: 0,
-    latest_inning_number: 0,
-    presquad_time: "2022-04-28 12:47:03",
-    verify_time: "",
-    toss: {
-      winner: 0,
-      decision: 0
+      $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: apiUrl,
+        success: function success(data) {
+          if (data && data.response && lodash__WEBPACK_IMPORTED_MODULE_1___default().size(data.response.items)) {
+            upcomingMetches = data.response.items;
+          }
+
+          instance.cricketMatches = [].concat(_toConsumableArray(liveMatches), _toConsumableArray(upcomingMetches));
+        }
+      });
     }
-  }, {
-    match_id: 53368,
-    title: "Punjab Kings vs Lucknow Super Giants",
-    short_title: "PBKS vs LSG",
-    subtitle: "Match 42",
-    format: 6,
-    format_str: "T20",
-    status: 1,
-    status_str: "Scheduled",
-    status_note: "",
-    verified: "false",
-    pre_squad: "true",
-    odds_available: "false",
-    game_state: 0,
-    game_state_str: "Default",
-    domestic: "1",
-    competition: {
-      cid: 123213,
-      title: "Indian Premier League",
-      abbr: "IPL",
-      type: "tournament",
-      category: "domestic",
-      match_format: "t20",
-      status: "live",
-      season: "2022",
-      datestart: "2022-03-26",
-      dateend: "2022-05-29",
-      country: "in",
-      total_matches: "70",
-      total_rounds: "1",
-      total_teams: "10"
-    },
-    teama: {
-      team_id: 627,
-      name: "Punjab Kings",
-      short_name: "PBKS",
-      logo_url: "https://images.entitysport.com/assets/uploads/2021/03/PK-Logo.png"
-    },
-    teamb: {
-      team_id: 123214,
-      name: "Lucknow Super Giants",
-      short_name: "LSG",
-      logo_url: "https://images.entitysport.com/assets/uploads/2022/03/Lucknow-Super-Giantslogo.png"
-    },
-    date_start: "2022-04-29 14:00:00",
-    date_end: "2022-04-30 00:00:00",
-    timestamp_start: 1651240800,
-    timestamp_end: 1651276800,
-    date_start_ist: "2022-04-29 19:30:00",
-    date_end_ist: "2022-04-30 05:30:00",
-    venue: {
-      venue_id: "24",
-      name: "Maharashtra Cricket Association Stadium, Pune",
-      location: "Pune",
-      timezone: "-12"
-    },
-    umpires: "",
-    referee: "",
-    equation: "",
-    live: "",
-    result: "",
-    result_type: "",
-    win_margin: "",
-    winning_team_id: 0,
-    commentary: 1,
-    wagon: 1,
-    latest_inning_number: 0,
-    presquad_time: "2022-04-27 09:29:13",
-    verify_time: "",
-    toss: {
-      winner: 0,
-      decision: 0
-    }
-  }, {
-    match_id: 54446,
-    title: "United Arab Emirates Women vs Hong Kong Women",
-    short_title: "UAE-W vs HKG-W",
-    subtitle: "3rd T20I",
-    format: 8,
-    format_str: "Woman T20",
-    status: 1,
-    status_str: "Scheduled",
-    status_note: "",
-    verified: "false",
-    pre_squad: "true",
-    odds_available: "false",
-    game_state: 0,
-    game_state_str: "Default",
-    domestic: "0",
-    competition: {
-      cid: 124441,
-      title: "Hong Kong Women tour of UAE",
-      abbr: "HKWTOUSE",
-      type: "tour",
-      category: "women",
-      match_format: "woment20",
-      status: "live",
-      season: "2022",
-      datestart: "2022-04-27",
-      dateend: "2022-04-30",
-      country: "int",
-      total_matches: "4",
-      total_rounds: "1",
-      total_teams: "2"
-    },
-    teama: {
-      team_id: 111324,
-      name: "United Arab Emirates Women",
-      short_name: "UAE-W",
-      logo_url: "https://images.entitysport.com/assets/uploads/2020/12/United_Arab_Emirates.png"
-    },
-    teamb: {
-      team_id: 26771,
-      name: "Hong Kong Women",
-      short_name: "HKG-W",
-      logo_url: "https://images.entitysport.com/assets/uploads/2020/12/Hong_Kong.png"
-    },
-    date_start: "2022-04-29 15:10:00",
-    date_end: "2022-04-30 01:10:00",
-    timestamp_start: 1651245000,
-    timestamp_end: 1651281000,
-    date_start_ist: "2022-04-29 20:40:00",
-    date_end_ist: "2022-04-30 06:40:00",
-    venue: {
-      venue_id: "1213346",
-      name: "Malek Cricket Stadium",
-      location: "Abu Dhabi",
-      timezone: "-12"
-    },
-    umpires: "",
-    referee: "",
-    equation: "",
-    live: "",
-    result: "",
-    result_type: "",
-    win_margin: "",
-    winning_team_id: 0,
-    commentary: 1,
-    wagon: 0,
-    latest_inning_number: 0,
-    presquad_time: "2022-04-28 21:05:58",
-    verify_time: "",
-    toss: {
-      winner: 0,
-      decision: 0
-    }
-  }, {
-    match_id: 54450,
-    title: "Surrey Risers vs United Stars",
-    short_title: "SRI vs UNS",
-    subtitle: "Match 21",
-    format: 17,
-    format_str: "T10",
-    status: 1,
-    status_str: "Scheduled",
-    status_note: "",
-    verified: "false",
-    pre_squad: "true",
-    odds_available: "false",
-    game_state: 0,
-    game_state_str: "Default",
-    domestic: "1",
-    competition: {
-      cid: 124334,
-      title: "Dream11 Jamaica T10",
-      abbr: "JamaicaT10",
-      type: "tournament",
-      category: "domestic",
-      match_format: "t10",
-      status: "live",
-      season: "2022",
-      datestart: "2022-04-19",
-      dateend: "2022-05-05",
-      country: "int",
-      total_matches: "25",
-      total_rounds: "1",
-      total_teams: "6"
-    },
-    teama: {
-      team_id: 124338,
-      name: "Surrey Risers",
-      short_name: "SRI",
-      logo_url: "https://images.entitysport.com/assets/uploads/2022/04/SRI-CR2@2x.png"
-    },
-    teamb: {
-      team_id: 124341,
-      name: "United Stars",
-      short_name: "UNS",
-      logo_url: "https://images.entitysport.com/assets/uploads/2022/04/UNS-CR1@2x.png"
-    },
-    date_start: "2022-04-29 15:45:00",
-    date_end: "2022-04-30 01:45:00",
-    timestamp_start: 1651247100,
-    timestamp_end: 1651283100,
-    date_start_ist: "2022-04-29 21:15:00",
-    date_end_ist: "2022-04-30 07:15:00",
-    venue: {
-      venue_id: "84",
-      name: "Sabina Park, Kingston, Jamaica",
-      location: "Kingston",
-      timezone: "-12"
-    },
-    umpires: "",
-    referee: "",
-    equation: "",
-    live: "",
-    result: "",
-    result_type: "",
-    win_margin: "",
-    winning_team_id: 0,
-    commentary: 1,
-    wagon: 0,
-    latest_inning_number: 0,
-    presquad_time: "2022-04-27 22:12:10",
-    verify_time: "",
-    toss: {
-      winner: 0,
-      decision: 0
-    }
-  }, {
-    match_id: 54471,
-    title: "Kabul Zalmi Live Star vs Rehan Khan Events",
-    short_title: " KZLS vs RKE",
-    subtitle: "Pre Quarter-final 1",
-    format: 17,
-    format_str: "T10",
-    status: 1,
-    status_str: "Scheduled",
-    status_note: "",
-    verified: "false",
-    pre_squad: "true",
-    odds_available: "false",
-    game_state: 0,
-    game_state_str: "Default",
-    domestic: "1",
-    competition: {
-      cid: 124357,
-      title: "Sharjah Ramadan T10 League",
-      abbr: "SRT10",
-      type: "tournament",
-      category: "domestic",
-      match_format: "t10",
-      status: "live",
-      season: "2022",
-      datestart: "2022-04-20",
-      dateend: "2022-05-10",
-      country: "ae",
-      total_matches: "37",
-      total_rounds: "1",
-      total_teams: "19"
-    },
-    teama: {
-      team_id: 123103,
-      name: "Kabul Zalmi Live Star",
-      short_name: " KZLS",
-      logo_url: "https://images.entitysport.com/assets/uploads/2022/02/Kabul-Zalmi-Live-Star.png"
-    },
-    teamb: {
-      team_id: 123803,
-      name: "Rehan Khan Events",
-      short_name: "RKE",
-      logo_url: "https://images.entitysport.com/assets/uploads/2022/03/RKE-CR1@2x.png"
-    },
-    date_start: "2022-04-29 16:00:00",
-    date_end: "2022-04-30 02:00:00",
-    timestamp_start: 1651248000,
-    timestamp_end: 1651284000,
-    date_start_ist: "2022-04-29 21:30:00",
-    date_end_ist: "2022-04-30 07:30:00",
-    venue: {
-      venue_id: "98",
-      name: "Sharjah Cricket Stadium",
-      location: "Sharjah",
-      timezone: "-12"
-    },
-    umpires: "",
-    referee: "",
-    equation: "",
-    live: "",
-    result: "",
-    result_type: "",
-    win_margin: "",
-    winning_team_id: 0,
-    commentary: 1,
-    wagon: 0,
-    latest_inning_number: 0,
-    presquad_time: "2022-04-29 05:00:28",
-    verify_time: "",
-    toss: {
-      winner: 0,
-      decision: 0
-    }
-  }]; // axios
-  //     .get(apiUrl)
-  //     .then((res) => {
-  //         console.log("items: ", res);
-  //     })
-  //     .catch((error) => {
-  //         instance.isValidAccToken = false;
-  //         instance.matches = [];
-  //         console.log(error);
-  //     });
+  });
 };
 /**
  * Show page loader
@@ -50466,12 +50111,12 @@ var render = function () {
               },
             },
             [
-              _vm.allMatches
+              _vm.cricketMatches && _vm.cricketMatches.length > 0
                 ? _c("div", [
                     _c(
                       "ul",
                       { staticClass: "live-container" },
-                      _vm._l(_vm.allMatches, function (item) {
+                      _vm._l(_vm.cricketMatches, function (item) {
                         return _c("li", { key: item.match_id }, [
                           _c("div", { staticClass: "live-item" }, [
                             _c("div", { staticClass: "match-circle" }),
@@ -62972,23 +62617,7 @@ var __webpack_exports__ = {};
   \*****************************/
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]); // import { createApp } from "vue";
-// import App from "./components/App.vue";
-// import Home from "./components/ExampleComponent.vue";
-// import LiveUpcoming from "./components/LiveUpcomingComponent.vue";
-// const routes = [
-//     {
-//         name: "/",
-//         path: "/",
-//         component: Home,
-//     },
-//     {
-//         name: "/live_upcoming",
-//         path: "/live_upcoming",
-//         component: LiveUpcoming,
-//     },
-// ];
-
+window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
 Vue.component("example-component", (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]));
 Vue.component("live-upcoming", (__webpack_require__(/*! ./components/LiveUpcomingComponent.vue */ "./resources/js/components/LiveUpcomingComponent.vue")["default"]));
 var app = new Vue({
