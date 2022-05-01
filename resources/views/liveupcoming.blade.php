@@ -1,7 +1,6 @@
-@extends('layouts.app');
-
-@section('content');
-<div>
+@extends('layouts.app')
+@section('content')
+<section class="container">
     <live-upcoming></live-upcoming>
-</div>
-@endsection;
+</section>
+@endsection

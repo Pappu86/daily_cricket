@@ -26,7 +26,7 @@
     <div>
         <nav class="navbar-expand-lg navbar navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="{{asset('live-upcoming')}}">Daily Cricket</a>
+                <a class="navbar-brand" href="{{asset('')}}">Daily Cricket</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -41,11 +41,6 @@
                             <a class="nav-link active" href="{{asset('live-upcoming')}}">Live & upcoming</a>
                         </li>
                     </ul>
-                    <div class="d-flex">
-                        <button class="btn btn-outline-success" type="button">
-                            Reset token
-                        </button>
-                    </div>
                 </div>
             </div>
         </nav>

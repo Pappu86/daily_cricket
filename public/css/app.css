@@ -57,6 +57,12 @@ body {
     margin-left: 10px;
 }
 
+.not-found-container {
+    margin: 100px auto 0;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
 /*************
 * Start tab container 
  *************/
@@ -209,7 +215,7 @@ ul.live-container li:last-child {
 .country-name,
 .vs,
 .start-time {
-    font-weight: 700;
+    font-weight: 500;
     font-size: 1.3rem;
     color: #31404b;
 }
