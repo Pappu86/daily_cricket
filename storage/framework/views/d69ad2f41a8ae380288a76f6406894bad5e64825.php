@@ -34,8 +34,6 @@
     <script src="<?php echo e(asset('js/app.js')); ?>"></script>
     <script src="<?php echo e(asset('js/jquery-3.4.1.min.js')); ?>"></script>
     <script src="<?php echo e(asset('js/bootstrap.js')); ?>"></script>
-    <!-- <script src="https://unpkg.com/vue@next"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 </body>
 
 </html><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/daily_cricket/resources/views/welcome.blade.php ENDPATH**/ ?>
