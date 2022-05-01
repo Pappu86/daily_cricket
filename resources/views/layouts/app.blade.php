@@ -25,7 +25,7 @@
     <span class="loader"></span>
     <div>
         <nav class="navbar-expand-lg navbar navbar-dark bg-primary">
-            <div class="container-fluid">
+            <div class="container">
                 <a class="navbar-brand" href="{{asset('live-upcoming')}}">Daily Cricket</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

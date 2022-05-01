@@ -49,18 +49,12 @@ body {
 /*************
 * End loader 
  *************/
-
-.access-token-container {
-    margin: 50px auto;
-    width: 500px;
-}
-
-.btn-token {
-    min-width: 100px;
-}
-
 .error-msg {
     color: red;
+}
+
+.ml-10 {
+    margin-left: 10px;
 }
 
 /*************

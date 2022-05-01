@@ -233,7 +233,6 @@ export default {
  * @param string
  * @return date string
  */
-
 const prepareDateFormat = (dateStr = "") => {
     let d = dateStr ? dateStr : new Date(),
         isoDateStr = !!d && d.toISOString(),
