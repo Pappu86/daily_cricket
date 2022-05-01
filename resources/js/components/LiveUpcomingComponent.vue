@@ -151,7 +151,7 @@ export default {
         return {
             accessToken: "",
             limit: 10,
-            total: 100,
+            limitTarget: 70,
             startDate: prepareDateFormat(),
             endDate: "2025-01-1",
             status: 1,
@@ -204,12 +204,11 @@ export default {
             let instance = this;
             instance.limit = value;
 
-            if (instance.limit <= 30) {
+            if (instance.limit <= instance.limitTarget) {
                 showLoader(false);
                 setTimeout(() => {
                     hideLoader();
                     setCricketMatches(this);
-                    console.log("matches: ", instance.cricketMatches);
                 }, 1000);
             } else {
                 // Hide loadmore button
@@ -257,6 +256,7 @@ const setCricketMatches = (instance) => {
         upcomingMetches = [],
         liveMatches = [];
 
+    // API call for get live match data
     $.ajax({
         type: "GET",
         dataType: "json",
@@ -266,6 +266,7 @@ const setCricketMatches = (instance) => {
                 liveMatches = data.response.items;
             }
 
+            // API call for get Upcoming match data
             $.ajax({
                 type: "GET",
                 dataType: "json",

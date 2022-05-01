@@ -5571,7 +5571,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     return {
       accessToken: "",
       limit: 10,
-      total: 100,
+      limitTarget: 70,
       startDate: prepareDateFormat(),
       endDate: "2025-01-1",
       status: 1,
@@ -5625,12 +5625,11 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var instance = this;
       instance.limit = value;
 
-      if (instance.limit <= 30) {
+      if (instance.limit <= instance.limitTarget) {
         showLoader(false);
         setTimeout(function () {
           hideLoader();
           setCricketMatches(_this);
-          console.log("matches: ", instance.cricketMatches);
         }, 1000);
       } else {
         // Hide loadmore button
@@ -5676,7 +5675,8 @@ var setCricketMatches = function setCricketMatches(instance) {
       apiUrl = "https://rest.entitysport.com/v2/matches?status=".concat(instance.status).concat(filters, "&token=").concat(accessToken),
       liveApiUrl = "https://rest.entitysport.com/v2/matches?status=3".concat(filters, "&token=").concat(accessToken),
       upcomingMetches = [],
-      liveMatches = [];
+      liveMatches = []; // API call for get live match data
+
   $.ajax({
     type: "GET",
     dataType: "json",
@@ -5684,7 +5684,8 @@ var setCricketMatches = function setCricketMatches(instance) {
     success: function success(data) {
       if (data && data.response && lodash__WEBPACK_IMPORTED_MODULE_1___default().size(data.response.items)) {
         liveMatches = data.response.items;
-      }
+      } // API call for get Upcoming match data
+
 
       $.ajax({
         type: "GET",
