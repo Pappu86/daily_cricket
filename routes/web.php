@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('api')->group(function(){
-    Route::get('getContacts','DailyCricketController@getContacts');
+Route::get('/live-upcoming', function () {
+    return view('liveupcoming');
 });
+
+// Route::prefix('api')->group(function(){
+//     Route::get('getContacts','DailyCricketController@getContacts');
+// });

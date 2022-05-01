@@ -12,6 +12,8 @@ Vue.component(
     require("./components/LiveUpcomingComponent.vue").default
 );
 
+Vue.component("home", require("./components/HomeComponent.vue").default);
+
 const app = new Vue({
     el: "#app",
 });

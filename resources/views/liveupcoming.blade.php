@@ -2,6 +2,6 @@
 
 @section('content');
 <div>
-    <home></home>
+    <live-upcoming></live-upcoming>
 </div>
 @endsection;
