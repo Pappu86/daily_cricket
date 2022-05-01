@@ -1,13 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 @charset "UTF-8";
-/*!
- * Bootstrap v5.1.3 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+
+/* #f8f9fa; */
+
 body {
     margin: 0;
+    padding: 0;
     background-color: #f3f3f3;
     font-family: "Barlow Semi Condensed", sans-serif;
 }
@@ -51,6 +49,19 @@ body {
 /*************
 * End loader 
  *************/
+
+.access-token-container {
+    margin: 50px auto;
+    width: 500px;
+}
+
+.btn-token {
+    min-width: 100px;
+}
+
+.error-msg {
+    color: red;
+}
 
 /*************
 * Start tab container 

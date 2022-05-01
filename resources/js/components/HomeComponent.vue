@@ -1,6 +1,16 @@
 <template>
-    <div>
-        <h2>Home page</h2>
+    <div class="container">
+        <div class="d-flex access-token-container">
+            <input
+                class="form-control me-2"
+                type="text"
+                placeholder="Enter your access token.."
+            />
+            <button class="btn btn-outline-primary btn-token">
+                Save token
+            </button>
+        </div>
+        <small class="error-msg"> Please enter your valid access token. </small>
     </div>
 </template>
 

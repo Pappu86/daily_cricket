@@ -1,7 +1,6 @@
-@extends('layouts.app');
-
-@section('content');
-<div>
+@extends('layouts.app')
+@section('content')
+<section>
     <home></home>
-</div>
-@endsection;
+</section>
+@endsection
