@@ -1,5 +1,5 @@
 <template>
-    <div class="text-center">
+    <div id="load-more" class="text-center">
         <button type="button" class="btn btn-primary" @click="customChange">
             Load more +
         </button>

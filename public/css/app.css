@@ -36,7 +36,7 @@ body {
 }
 
 .loader {
-    border-top: 6px solid #1ab394;
+    border-top: 6px solid #2978fb;
 }
 
 @keyframes spin {
@@ -126,7 +126,7 @@ ul.live-container li:last-child {
 .match-status {
     z-index: 1;
     max-width: 100px;
-    background: #2978fb;
+    min-width: 65px;
     border-radius: 0 10px 10px 0;
     margin-left: -40px;
     margin-top: 7px;
@@ -140,9 +140,17 @@ ul.live-container li:last-child {
     text-transform: uppercase;
 }
 
+.status-Upcoming {
+    background: #2978fb;
+}
+
+.status-Live {
+    background: #198754;
+}
+
 .match {
     margin-top: 18px;
-    margin-left: 10px;
+    margin-left: 30px;
 }
 
 .team-details {
@@ -185,6 +193,7 @@ ul.live-container li:last-child {
 .country-logo {
     width: 40px;
     height: 40px;
+    margin: 0;
 }
 
 .country-logo img {
@@ -195,7 +204,7 @@ ul.live-container li:last-child {
 .vs,
 .start-time {
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #31404b;
 }
 

@@ -5555,6 +5555,14 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5563,6 +5571,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     return {
       accessToken: "",
       limit: 10,
+      total: 100,
       startDate: prepareDateFormat(),
       endDate: "2025-01-1",
       status: 1,
@@ -5580,6 +5589,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
         }
 
         return statusStr;
+      },
+      getClassName: function getClassName(status, type) {
+        var name = "match-status",
+            statusStr = "Upcoming";
+
+        if (status === 2) {
+          statusStr = "Completed";
+        }
+
+        if (status === 3) {
+          statusStr = "Live";
+        }
+
+        return "match-" + type + " " + "status-" + statusStr;
       },
       getLocalTime: function getLocalTime(time, timestampStart) {
         return !!time ? time.slice(9) : new Date(timestampStart).toLocaleTimeString() + " local time";
@@ -5599,13 +5622,20 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     hendleLoadMore: function hendleLoadMore(event, value) {
       var _this = this;
 
-      showLoader(false);
       var instance = this;
       instance.limit = value;
-      setTimeout(function () {
-        hideLoader();
-        setCricketMatches(_this);
-      }, 1000);
+
+      if (instance.limit <= 30) {
+        showLoader(false);
+        setTimeout(function () {
+          hideLoader();
+          setCricketMatches(_this);
+          console.log("matches: ", instance.cricketMatches);
+        }, 1000);
+      } else {
+        // Hide loadmore button
+        $("#load-more").hide();
+      }
     }
   },
   mounted: function mounted() {
@@ -50119,15 +50149,23 @@ var render = function () {
                       _vm._l(_vm.cricketMatches, function (item) {
                         return _c("li", { key: item.match_id }, [
                           _c("div", { staticClass: "live-item" }, [
-                            _c("div", { staticClass: "match-circle" }),
+                            _c("div", {
+                              class: _vm.getClassName(item.status, "circle"),
+                            }),
                             _vm._v(" "),
-                            _c("div", { staticClass: "match-status" }, [
-                              _vm._v(
-                                "\n                                    " +
-                                  _vm._s(_vm.getStatusStr(item.status)) +
-                                  "\n                                "
-                              ),
-                            ]),
+                            _c(
+                              "div",
+                              {
+                                class: _vm.getClassName(item.status, "status"),
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(_vm.getStatusStr(item.status)) +
+                                    "\n                                "
+                                ),
+                              ]
+                            ),
                             _vm._v(" "),
                             _c("small", { staticClass: "match" }, [
                               _vm._v(
@@ -50341,7 +50379,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "text-center" }, [
+  return _c("div", { staticClass: "text-center", attrs: { id: "load-more" } }, [
     _c(
       "button",
       {

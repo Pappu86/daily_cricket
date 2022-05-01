@@ -44,8 +44,16 @@
                                 :key="item.match_id"
                             >
                                 <div class="live-item">
-                                    <div class="match-circle"></div>
-                                    <div class="match-status">
+                                    <div
+                                        :class="
+                                            getClassName(item.status, 'circle')
+                                        "
+                                    ></div>
+                                    <div
+                                        :class="
+                                            getClassName(item.status, 'status')
+                                        "
+                                    >
                                         {{ getStatusStr(item.status) }}
                                     </div>
                                     <small class="match">
@@ -143,6 +151,7 @@ export default {
         return {
             accessToken: "",
             limit: 10,
+            total: 100,
             startDate: prepareDateFormat(),
             endDate: "2025-01-1",
             status: 1,
@@ -157,6 +166,19 @@ export default {
                     statusStr = "Live";
                 }
                 return statusStr;
+            },
+            getClassName: function (status, type) {
+                let name = "match-status",
+                    statusStr = "Upcoming";
+
+                if (status === 2) {
+                    statusStr = "Completed";
+                }
+                if (status === 3) {
+                    statusStr = "Live";
+                }
+
+                return "match-" + type + " " + "status-" + statusStr;
             },
             getLocalTime: function (time, timestampStart) {
                 return !!time
@@ -179,14 +201,20 @@ export default {
     },
     methods: {
         hendleLoadMore: function (event, value) {
-            showLoader(false);
             let instance = this;
             instance.limit = value;
 
-            setTimeout(() => {
-                hideLoader();
-                setCricketMatches(this);
-            }, 1000);
+            if (instance.limit <= 30) {
+                showLoader(false);
+                setTimeout(() => {
+                    hideLoader();
+                    setCricketMatches(this);
+                    console.log("matches: ", instance.cricketMatches);
+                }, 1000);
+            } else {
+                // Hide loadmore button
+                $("#load-more").hide();
+            }
         },
     },
     mounted() {
