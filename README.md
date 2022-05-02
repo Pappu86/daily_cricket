@@ -12,6 +12,14 @@
     - npm run dev
     - php artisan serve
 
+# About access it
+
+-   API token access: 9e272eadc7907624ee8bb8d4b0eca1f5 or get access token from https://doc.entitysport.com
+-   First, you will see an input field where you need to provide an access token and save it
+-   Then you will see 'Live and Upcoming' cricket metches
+
+# Screenshots
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
