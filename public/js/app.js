@@ -5433,29 +5433,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -5485,7 +5462,11 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         });
-        hendleErrorMsg(instance, isValidToken);
+        (0,_generalHelpers__WEBPACK_IMPORTED_MODULE_0__.showLoader)(false);
+        setTimeout(function () {
+          (0,_generalHelpers__WEBPACK_IMPORTED_MODULE_0__.hideLoader)();
+          hendleErrorMsg(instance, isValidToken);
+        }, 3000);
       } else {
         hendleErrorMsg(instance, isValidToken);
       }
@@ -5545,6 +5526,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Loader_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Loader.vue */ "./resources/js/components/Loader.vue");
+/* harmony import */ var _generalHelpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../generalHelpers */ "./resources/js/generalHelpers.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -5726,6 +5708,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5786,9 +5769,9 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       instance.limit = value;
 
       if (instance.limit <= instance.limitTarget) {
-        showLoader(false);
+        (0,_generalHelpers__WEBPACK_IMPORTED_MODULE_3__.showLoader)(false);
         setTimeout(function () {
-          hideLoader();
+          (0,_generalHelpers__WEBPACK_IMPORTED_MODULE_3__.hideLoader)();
           setCricketMatches(_this);
         }, 1000);
       } else {
@@ -5802,7 +5785,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     instance.$nextTick(function () {
       setTimeout(function () {
         setCricketMatches(instance);
-        hideLoader();
+        (0,_generalHelpers__WEBPACK_IMPORTED_MODULE_3__.hideLoader)();
       }, 1000);
     });
   }
@@ -5861,38 +5844,6 @@ var setCricketMatches = function setCricketMatches(instance) {
       });
     }
   });
-};
-/**
- * Show page loader
- * @param boolean true/false
- * @result page loader show
- */
-
-
-var showLoader = function showLoader() {
-  var isOverlay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-
-  if (isOverlay) {
-    $("#overlayer").show();
-  }
-
-  $(".loader").show();
-};
-/**
- * Hide page loader
- * @param boolean true/false
- * @result page loader hode
- */
-
-
-var hideLoader = function hideLoader() {
-  var isOverlay = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-
-  if (isOverlay) {
-    $("#overlayer").hide();
-  }
-
-  $(".loader").hide();
 };
 
 /***/ }),

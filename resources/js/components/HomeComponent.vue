@@ -24,29 +24,6 @@
                 </button>
             </div>
         </div>
-        <!-- <div class="d-flex access-token-container">
-            <input
-                class="form-control me-2"
-                type="text"
-                v-model="accessToken"
-                placeholder="Enter your access token.."
-            />
-            <button
-                class="btn btn-outline-primary btn-token"
-                @click="saveToken"
-            >
-                Save token
-            </button>
-            <button
-                class="btn btn-outline-secondary btn-token ml-10"
-                @click="resetToken"
-            >
-                Reset token
-            </button>
-        </div> -->
-        <!-- <small id="error" class="error-msg">
-            Please enter your valid access token.
-        </small> -->
     </div>
 </template>
 
@@ -86,7 +63,11 @@ export default {
                     },
                 });
 
-                hendleErrorMsg(instance, isValidToken);
+                showLoader(false);
+                setTimeout(() => {
+                    hideLoader();
+                    hendleErrorMsg(instance, isValidToken);
+                }, 3000);
             } else {
                 hendleErrorMsg(instance, isValidToken);
             }

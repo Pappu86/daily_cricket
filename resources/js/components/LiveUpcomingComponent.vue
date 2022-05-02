@@ -169,6 +169,8 @@ import moment from "moment";
 import _ from "lodash";
 import Loader from "./Loader.vue";
 
+import { showLoader, hideLoader } from "../generalHelpers";
+
 export default {
     data() {
         return {
@@ -307,32 +309,6 @@ const setCricketMatches = (instance) => {
             });
         },
     });
-};
-
-/**
- * Show page loader
- * @param boolean true/false
- * @result page loader show
- */
-
-const showLoader = (isOverlay = true) => {
-    if (isOverlay) {
-        $("#overlayer").show();
-    }
-    $(".loader").show();
-};
-
-/**
- * Hide page loader
- * @param boolean true/false
- * @result page loader hode
- */
-
-const hideLoader = (isOverlay = true) => {
-    if (isOverlay) {
-        $("#overlayer").hide();
-    }
-    $(".loader").hide();
 };
 </script>
 
