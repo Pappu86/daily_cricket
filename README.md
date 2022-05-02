@@ -20,9 +20,9 @@
 
 # Screenshots
 
-![https://github.com/Pappu86/daily_cricket/blob/main/screen-1.png]
+![](https://github.com/Pappu86/daily_cricket/blob/main/screen-1.png)
 
-![https://github.com/Pappu86/daily_cricket/blob/main/screen-2.png]
+![](https://github.com/Pappu86/daily_cricket/blob/main/screen-2.png)
 
 -   https://github.com/Pappu86/daily_cricket/blob/main/screen-1.png
 -   https://github.com/Pappu86/daily_cricket/blob/main/screen-2.png
