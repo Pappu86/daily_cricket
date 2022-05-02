@@ -20,16 +20,18 @@
 
 # Screenshots
 
-![](https://github.com/Pappu86/daily_cricket/blob/main/screen-1.png)
-
-![](https://github.com/Pappu86/daily_cricket/blob/main/screen-2.png)
-
 -   https://github.com/Pappu86/daily_cricket/blob/main/screen-1.png
+    ![](https://github.com/Pappu86/daily_cricket/blob/main/screen-1.png)
+
 -   https://github.com/Pappu86/daily_cricket/blob/main/screen-2.png
+    ![](https://github.com/Pappu86/daily_cricket/blob/main/screen-2.png)
 
 Please let me know if you have any queries..
 
-Thanks \n
-Md. Pappu Miahn \n
-Email: cse.pappu@gmail.com \n
-Phone: +880 1717 479 550
+###### Thanks
+
+###### Md. Pappu Miahn
+
+###### Email: cse.pappu@gmail.com
+
+###### Phone: +880 1717 479 550
