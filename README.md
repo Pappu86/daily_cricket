@@ -7,7 +7,6 @@
 3. Open this code in any of the code editor.
 4. Now run the following command setp by step from your terminal
     - cd daily_cricket
-    - composer update
     - npm install
     - npm run dev
     - php artisan serve
