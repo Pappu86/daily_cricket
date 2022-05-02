@@ -51,6 +51,7 @@ body {
  *************/
 .error-msg {
     color: red;
+    display: none;
 }
 
 .ml-10 {

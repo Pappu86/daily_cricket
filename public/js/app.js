@@ -5432,6 +5432,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -11044,7 +11068,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.access-token-container[data-v-782dcf83] {\n    margin: 100px auto 0;\n    width: 500px;\n}\n.btn-token[data-v-782dcf83] {\n    min-width: 100px;\n}\n.error-msg[data-v-782dcf83] {\n    width: 500px;\n    margin: 0 auto;\n    display: none;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.access-token-container[data-v-782dcf83] {\n    margin: 100px auto 0;\n}\n\n/* Large devices (desktops, 992px and up) */\n@media (max-width: 992px) {\n.token-btn-container[data-v-782dcf83] {\n        text-align: center;\n        margin-top: 20px;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -11068,7 +11092,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.click-here[data-v-3e0b13da] {\n    margin-left: 5px;\n}\n.click-here a[data-v-3e0b13da] {\n    text-decoration: none;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.click-here[data-v-3e0b13da] {\n    margin-left: 5px;\n}\n.click-here a[data-v-3e0b13da] {\n    text-decoration: none;\n}\n@media (max-width: 740px) {\nul.live-container li > .live-item[data-v-3e0b13da]:nth-child(2) {\n        flex-basis: 63%;\n}\n.team-details span[data-v-3e0b13da]:nth-child(1),\n    .team-details span[data-v-3e0b13da]:nth-child(5) {\n        flex-basis: 27%;\n}\n.country-name[data-v-3e0b13da],\n    .vs[data-v-3e0b13da],\n    .start-time[data-v-3e0b13da] {\n        font-size: 1rem;\n}\n}\n@media (max-width: 412px) {\nul.live-container li > .live-item[data-v-3e0b13da]:nth-child(1) {\n        flex-basis: 33%;\n}\nul.live-container li > .live-item[data-v-3e0b13da]:nth-child(2) {\n        flex-basis: 48%;\n}\n.team-details span[data-v-3e0b13da]:nth-child(1),\n    .team-details span[data-v-3e0b13da]:nth-child(5) {\n        flex-basis: 27%;\n}\n.match-circle[data-v-3e0b13da] {\n        width: 45px;\n        height: 45px;\n}\n.match-status[data-v-3e0b13da] {\n        height: 30px;\n        line-height: 2.8;\n}\n.country-name[data-v-3e0b13da],\n    .vs[data-v-3e0b13da],\n    .start-time[data-v-3e0b13da] {\n        font-size: 1rem;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -50869,51 +50893,61 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "d-flex access-token-container" }, [
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.accessToken,
-            expression: "accessToken",
-          },
-        ],
-        staticClass: "form-control me-2",
-        attrs: { type: "text", placeholder: "Enter your access token.." },
-        domProps: { value: _vm.accessToken },
-        on: {
-          input: function ($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.accessToken = $event.target.value
-          },
-        },
-      }),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-primary btn-token",
-          on: { click: _vm.saveToken },
-        },
-        [_vm._v("\n            Save token\n        ")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-outline-secondary btn-token ml-10",
-          on: { click: _vm.resetToken },
-        },
-        [_vm._v("\n            Reset token\n        ")]
-      ),
-    ]),
-    _vm._v(" "),
-    _c("small", { staticClass: "error-msg", attrs: { id: "error" } }, [
-      _vm._v("\n        Please enter your valid access token.\n    "),
-    ]),
+    _c(
+      "div",
+      { staticClass: "row justify-content-md-center access-token-container" },
+      [
+        _c("div", { staticClass: "col col-lg-4 col-sm-12" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.accessToken,
+                expression: "accessToken",
+              },
+            ],
+            staticClass: "form-control me-2",
+            attrs: { type: "text", placeholder: "Enter your access token.." },
+            domProps: { value: _vm.accessToken },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.accessToken = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _c("small", { staticClass: "error-msg", attrs: { id: "error" } }, [
+            _vm._v(
+              "\n                Please enter your valid access token.\n            "
+            ),
+          ]),
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-3 col-sm-12 token-btn-container" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-primary",
+              on: { click: _vm.saveToken },
+            },
+            [_vm._v("\n                Save token\n            ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-outline-secondary ml-10",
+              on: { click: _vm.resetToken },
+            },
+            [_vm._v("\n                Reset token\n            ")]
+          ),
+        ]),
+      ]
+    ),
   ])
 }
 var staticRenderFns = []

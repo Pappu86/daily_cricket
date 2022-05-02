@@ -343,4 +343,45 @@ const hideLoader = (isOverlay = true) => {
 .click-here a {
     text-decoration: none;
 }
+
+@media (max-width: 740px) {
+    ul.live-container li > .live-item:nth-child(2) {
+        flex-basis: 63%;
+    }
+    .team-details span:nth-child(1),
+    .team-details span:nth-child(5) {
+        flex-basis: 27%;
+    }
+    .country-name,
+    .vs,
+    .start-time {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 412px) {
+    ul.live-container li > .live-item:nth-child(1) {
+        flex-basis: 33%;
+    }
+    ul.live-container li > .live-item:nth-child(2) {
+        flex-basis: 48%;
+    }
+    .team-details span:nth-child(1),
+    .team-details span:nth-child(5) {
+        flex-basis: 27%;
+    }
+    .match-circle {
+        width: 45px;
+        height: 45px;
+    }
+    .match-status {
+        height: 30px;
+        line-height: 2.8;
+    }
+    .country-name,
+    .vs,
+    .start-time {
+        font-size: 1rem;
+    }
+}
 </style>

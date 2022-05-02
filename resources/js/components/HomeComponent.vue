@@ -1,6 +1,30 @@
 <template>
     <div class="container">
-        <div class="d-flex access-token-container">
+        <div class="row justify-content-md-center access-token-container">
+            <div class="col col-lg-4 col-sm-12">
+                <input
+                    class="form-control me-2"
+                    type="text"
+                    v-model="accessToken"
+                    placeholder="Enter your access token.."
+                />
+                <small id="error" class="error-msg">
+                    Please enter your valid access token.
+                </small>
+            </div>
+            <div class="col-lg-3 col-sm-12 token-btn-container">
+                <button class="btn btn-outline-primary" @click="saveToken">
+                    Save token
+                </button>
+                <button
+                    class="btn btn-outline-secondary ml-10"
+                    @click="resetToken"
+                >
+                    Reset token
+                </button>
+            </div>
+        </div>
+        <!-- <div class="d-flex access-token-container">
             <input
                 class="form-control me-2"
                 type="text"
@@ -19,10 +43,10 @@
             >
                 Reset token
             </button>
-        </div>
-        <small id="error" class="error-msg">
+        </div> -->
+        <!-- <small id="error" class="error-msg">
             Please enter your valid access token.
-        </small>
+        </small> -->
     </div>
 </template>
 
@@ -103,16 +127,13 @@ const hendleErrorMsg = (instance, isValidToken) => {
 <style scoped>
 .access-token-container {
     margin: 100px auto 0;
-    width: 500px;
 }
 
-.btn-token {
-    min-width: 100px;
-}
-
-.error-msg {
-    width: 500px;
-    margin: 0 auto;
-    display: none;
+/* Large devices (desktops, 992px and up) */
+@media (max-width: 992px) {
+    .token-btn-container {
+        text-align: center;
+        margin-top: 20px;
+    }
 }
 </style>
