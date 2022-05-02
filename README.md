@@ -25,7 +25,7 @@
 
 Please let me know if you have any queries..
 
-Thanks
-Md. Pappu Miahn
-Email: cse.pappu@gmail.com
+Thanks \n
+Md. Pappu Miahn \n
+Email: cse.pappu@gmail.com \n
 Phone: +880 1717 479 550
